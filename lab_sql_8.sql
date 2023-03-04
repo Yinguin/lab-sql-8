@@ -15,14 +15,14 @@ SELECT C.category_id, C.name, COUNT(F.film_id) AS num_of_films
 FROM category C
 INNER JOIN film_category F
 ON C.category_id = F.category_id
-GROUP BY C.category_id;
+GROUP BY C.category_id, C.name;
 
 # 4. Which actor has appeared in the most films? Hint: You can create a join between the tables "actor" and "film actor" and count the number of times an actor appears.
 SELECT A.actor_id, A.first_name, A.last_name, COUNT(F.film_id) AS num_of_films
 FROM actor A
 INNER JOIN film_actor F
 ON A.actor_id = F.actor_id
-GROUP BY A.actor_id
+GROUP BY A.actor_id, A.first_name, A.last_name
 ORDER BY num_of_films
 LIMIT 1;
 
@@ -31,7 +31,7 @@ SELECT C.customer_id, C.first_name, C.last_name, COUNT(R.rental_id) AS num_of_re
 FROM customer C
 INNER JOIN rental R
 ON C.customer_id = R.customer_id
-GROUP BY C.customer_id
+GROUP BY C.customer_id, C.first_name, C.last_name
 ORDER BY num_of_rentals
 LIMIT 1;
 
